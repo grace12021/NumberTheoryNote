@@ -1,0 +1,24 @@
+name: Build LaTeX document
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v3
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: "main.tex"
+          glob_root_file: true
+      - name: Commits
+        run: |
+          git config --local user.email ""
+          git config --local user.name "Auto Compiling Tex"
+          git add "main.pdf"
+          git commit -m "Auto - Compile LaTex file"
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          branch: 'main'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
