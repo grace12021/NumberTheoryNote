@@ -1,0 +1,113 @@
+Wednesday, September 13.
+
+\subsubsection*{Contents}
+\begin{itemize}
+    \item Lattice
+    \item Minkowski Theory
+\end{itemize}
+
+\subsection*{\S 4. Lattices}
+We will use this to prove that \(|cl_K| < \infty\) for all number fields $K$. Throughout today's class, $V$ is a vector space over $\R$ with $0<\dim V < \infty$ and $n = \dim V$.
+
+\begin{definition}
+    A \textit{lattice} in $V$ is an additive subgroup of $V$ of the form \[\Gamma = \Z v_1 + \cdots + \Z v_m\]
+    where $v_1, \cdots, v_m \in V$. A lattice is \textit{complete} or \textit{full} if $m = n$ (it is equivalent to that $\Gamma$ spans $V$).
+\end{definition}
+
+Equivalently, we can define that a lattice in \(V\) is a discrete additive subgroup of $V$ (Proposition 4.2).
+
+\begin{definition}
+    A \textit{fundamental mesh} for $\Gamma$ is a set 
+    \[\sum_{i=1}^m x_i v_i \ : \ 0 \leq x_i <1 \ \forall i\}\]
+    for some basis $v_1, \cdots, v_m$ of $\Gamma$. This is a particular type of the set of coset representatives of $\Gamma$ in $\mathrm{span} (\Gamma)$.
+\end{definition}
+
+\clearpage
+Here are examples of fundemental mesh.
+\begin{figure}[h!]
+    \centering
+\begin{tikzpicture}
+    \fill [aliceblue] (0,0) rectangle (1,1);
+
+    % Axes
+    \draw[thick,->] (-2,0) -- (2,0) node[right] {$x$};
+    \draw[thick,->] (0,-2) -- (0,2) node[above] {$y$};
+    
+    % Line segment from (0,1) to (1,1)
+    \draw[dotted, thick] (0,1) -- (1,1);
+    \draw[dotted, thick] (1,0) -- (1,1);
+\end{tikzpicture}
+\begin{tikzpicture}
+
+    % Axes
+    \draw[thick,->] (-2,0) -- (2,0) node[right] {$x$};
+    \draw[thick,->] (0,-2) -- (0,2) node[above] {$y$};
+    
+    \draw[thick,->] (0,0) -- (1,1);
+\end{tikzpicture}
+\end{figure}
+
+Fix an additive (nonzero) Haar measure $vol$ on $V$. This is a positive multiple of the standard Lebesgue measure on $\R^n$. Or we can say that the cube spanned by an orthonormal basis has $vol$ $1$ given a symmetric positive definite bilinear $\langle \cdot, \cdot \rangle$ on $V$.
+
+\begin{definition}
+    Let $\Gamma$ be a full lattice in $V$. Then the \textit{covolume} of $\Gamma$, denoted $covol(\Gamma)$, is the volume of a fundamental mesh for $\Gamma$. 
+\end{definition}
+
+We notice that this is independent of the choice of fundamental mesh. Also, $covol(\Gamma) = |\det A|$ where $A$ is the change of basis matrix from an orthonormal basis of $V$ to a basis of $\Gamma$. Also note that $\Gamma' \subsetneq \Gamma$ implies that $covol(\Gamma')>covol(\Gamma)$.
+
+\begin{definition}
+    A subset $X$ of $V$ is
+    \begin{itemize}
+        \item[(a)] \textit{symmetric} if $-x\in X \quad \forall x \in X$; and
+        \item[(b)] \textit{convex} if $X$ contains all the line segments $AB \quad \forall A, B \in X$. 
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}[Minkowski]
+    Let $\Gamma$ be a full lattice in $V_1$ and let $X$ be a convex, centrally symmetric subset of $V$. Assume also that
+    \begin{itemize}
+        \item[(a)] $vol(X) > 2^n covol(\Gamma)$; or
+        \item[(b)] $X$ is compact and $vol(X) \geq 2^n covol(\Gamma)$.
+    \end{itemize}
+    Then $X$ contains a nonzero lattice point of $\Gamma$.
+\end{theorem}
+\begin{proof}
+    Assuming (a), note that
+    \begin{equation}
+        vol(\frac{1}{2}X) = \frac{1}{2^n}vol(X) > covol(\Gamma).
+        \label{note9_eq1}
+    \end{equation}
+    Let $D$ be a fundamental mesh for $\Gamma$. Note that
+    \[\underset{\gamma \in \Gamma}{\bigcup}(D+\gamma) = V.\]
+    Therefore 
+    \[\underset{\gamma \in \Gamma}{\bigcup}((D+\gamma)\cap \frac{1}{2}X) = \frac{1}{2}X\]
+    and we have
+    \begin{equation}
+        \sum_{\gamma \in \Gamma}vol((D+\gamma)\cap \frac{1}{2}X) \geq vol(\frac{1}{2}X).
+        \label{note9_eq2}
+    \end{equation}
+    But also we have that
+    \[\underset{\gamma \in Gamma}{\bigcup}((\frac{1}{2}X-\gamma)\cap D) \subseteq D\]
+    because those are subsets of $D$, so either they overlap or
+    \begin{equation}
+        \sum_{\gamma \in \Gamma}vol((\frac{1}{2}X-\gamma)\cap D) \leq vol(D).
+        \label{note9_eq3}
+    \end{equation}
+    However, translating by $\gamma$ gives
+    \[vol((\frac{1}{2}X-\gamma) \cap D) = vol ((D+\gamma)\cap \frac{1}{2}X)\]
+    for all $\gamma \in \Gamma$. So (\ref{note9_eq2}) contradicts to (\ref{note9_eq3}) by (\ref{note9_eq1}); so there exists some distinct $\gamma_1, \gamma_2$ such that
+    \[((\frac{1}{2}X-\gamma_1) \cap D)\cap ((\frac{1}{2}X-\gamma_2) \cap D) \neq \emptyset.\]
+
+    Pick some $v$ in this set. Then $v +\gamma_1$ and $v+\gamma_2$ are contained in $\frac{1}{2}X$. So is $-v-\gamma_2$ by the symmetry. Hence the middle point $(\gamma_1-\gamma_2)/2$ of $v+\gamma_1$ and $-v-\gamma_2$ is in $\frac{1}{2}X$ since $X$ is convex. Hence $\gamma_1-\gamma_2$ is a nonzero element in $\Gamma\cap X$.
+
+    The proof of (b) is the next homework.
+\end{proof}
+
+\subsection*{\S 5. Minkowski Theory}
+
+This is also called as ``Geometry of Numbers". Let $K$ be a number field and let $n = [K \ : \ \Q]$. Let $\mathbf{a}$ be a fractional ideal of $K$. Since $\mathbf{a}$ has a basis over $\Z$ (and is full), its addtive group is isomorphic to $\Z^n$ thinking of $\mathbf{a}$ as a $\Z$-submodule of $K$. Also, we notice that $K \cong \Q^n$ as a vector space of $\Q$, so it's tempting to let $V = K \otimes_\Q \R \cong \R^n$ and show that the map $K \hookrightarrow V$ takes $\mathbf{a}$ to a full lattice in $V$. This is true but we will need more.
+
+Instead, we have $n$ distinct embeddings of $K$ into $\C$ over $\Q$ where $n = [K \ : \ \Q]_s = [K \ : \ \Q]$. Call them $\tau_1, \cdots \tau_n$. So we get a map $(\tau_1, \cdots, \tau_n): K \hookrightarrow \C^n$. Note that $\C^n$ is a vector space over $\R$ of dimension $2n$. Let $\rho_1, \cdots, \rho_r$ be those $\tau_i$ with $\tau(K) \subset \R$. For the remaining $\tau_j$, we realize that the conjugate of each $\tau_j$ is also among the $\tau_j$s (other than $\rho_i$) and $\tau_j \neq \overline{\tau_j}$. So $\{\tau_i\}\setminus\{\rho_i\}$ consists of pairwise disjoint complex conjugate pairs of embeddings $K \hookrightarrow \C$. Let $s$ be the number of such pairs. Then clearly $r+2s = n$. Let $\sigma_1, \cdots, \sigma_s$ be a chose of one element from each pair.
+
+Now we have $\rho_1, \cdots \rho_r, \sigma_1, \overline{\sigma_1}, \cdots, \sigma_s, \overline{\sigma_s}$ instead of $\tau_1, \cdots, \tau_n$. We have a map $j:=(\rho_1, \cdots, \rho_r, \sigma_1, \cdots, \sigma_s): K \hookrightarrow \R^r\times \C^s \cong \R^n$.
+\clearpage

@@ -1,0 +1,76 @@
+Friday, August 25, 2023.
+\subsubsection*{Contents}
+\begin{itemize}
+    \item Reading for today: \S 1.1
+    \item Rings / Gauss's Lemma / Integrality
+\end{itemize}
+
+\section*{1. Algebraic Integers}
+\subsection*{\S 2. Integrality}
+\begin{definition}
+    A ring is \textit{entire} if it has $1$ ($\Leftrightarrow$ ring is not trivial) and no zero divisors (and is commutative). Equivalently,
+    \begin{itemize}
+        \item it is a subring of a field; or
+        \item it is an \textit{integral domain}.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    A ring is \textit{factorial} if it is entire and all nonzero elements have unique factorization into irreducible elements up to associates. Two elements $x, y$ are \textit{associates} if $x = uy$ for some unit $u$. An element $x$ is irreducible if $x = ab$ implies that $a$ or $b$ is a unit.
+\end{definition}
+
+\begin{definition}
+    A ring is \textit{principal} if it is nontrivial and every ideal in it is principal. A ring is a \textit{principal ideal domain} (also called \textit{PID}) if it is entire and principal.
+\end{definition}
+
+\begin{definition}
+    A polynomial in one variable is monic if it has leading coefficient $1$. So it looks like $x^n+a_{n-1}x^{n-1}+\cdots a_1 x + a_0$ where $a_0, a_1, \cdots, a_{n-1}$ are in the ring of constants.
+\end{definition}
+
+We note that if a polynomial is monic, then it is nonzero.
+
+\begin{lemma}[Gauss's Lemma]
+    Let $A$ be a factorial ring (UFD), and let $K$ be its field of fractions. Let $f \in A[x]$ be a non-zero polynomials. If $f$ factors as $f = gh$ with $g, h \in K[x]$, then there exists some $c \in K^*$ such that $cg$ and $c^{-1}h$ have coefficients in $A$. Furthermore if $f, g, h$ are all monic, then this is true with $c = 1$.
+\end{lemma}
+\begin{proof}
+    (Exercise) We assume that all the coefficients are in the form that the denominator and the numerator are relatively prime. Let $a, b \in A$ be gcd of numerators of coefficients of $g, h$ respectively. Let $\alpha, \beta \in A$ be lcms of denominators of coefficients of $g, h$ respectively. Then we claim that $\beta$ divides $a$. \textbf{TO DO}
+\end{proof}
+
+\begin{definition}\noindent
+\begin{itemize}
+    \item[(a)] Let $A \subseteq B$ be rings. Let $b$ in $B$. Then $b$ is integral over $A$ if there exists a monic $f \in A[x]$ such that $f(b) = 0$.
+    \item[(b)] We say that $B$ is integral over $A$ if $b$ is integral over $A$ for $\forall b \in B$.
+    \item[(c)] The integral closure of $A$ in $B$ is $\overline{A} = \{b \in B \ : \ b $ is integral over $A\}$.
+    \item[(d)] Assume that $A$ is entire. Then the integral closure of $A$ is its integral closure in its field of fractions. 
+\end{itemize}
+\end{definition}
+
+\begin{proposition}
+    The integral closure of $\Z$ in $\Q(\sqrt{2})$ is $\Z(\sqrt{2})$.
+\end{proposition}
+\begin{proof}
+    We claim that $\Z(\sqrt{2})$ is integral over $\Z$. For any $\alpha = a+b\sqrt{2}$ with $a, b\in \Z$, $\alpha$ is integral over $\Z$ because it is a root of \[x^2-2ax+(a^2-2b^2) = (x-a-b\sqrt{2})(x-a+b\sqrt{2}).\]
+
+    For the backward direction, assume that some $\alpha \in \Q(\sqrt{2})$ is integral over $\Z$. Then there exists a monic $f \in \Z[x]$ such that $f(\alpha) = 0$. Let $g$ be the irreducible polynomial of $\alpha$ over $\Q$. Since $g$ divides $f$ and both $f, g$ are monic, $g$ is in $\Z[x]$ by Gauss's lemma.
+
+    If $\alpha$ is in $\Q$, $g$ has degree $1$ hence $g(x) = x-\alpha$; hence $\alpha$ is in $\Z$; hence $\alpha$ is in $\Z[\sqrt{2}]$. Otherwise, $g$ is in the form $g(x) = x^2 -2ax+(a^2-2b^2)$ where $\alpha = a+b\sqrt{2}$ and $a,b \in \Q$; hence $2a, a^2-2b^2$ are integers. So $(2a)^2-4(a^2-2b^2) = 8b^2$ is an integer; so $2b$ is an integer. If $2a$ is an odd integer, then $4(a^2-2b^2) = (2a)^2 + 2(2b)^2$ is an odd integer which contradicts to that $a^2-2b^2$ is an integer. Hence $a$ is an integer; hence $2b^2$ is an integer; hence $b$ is an integer. Therefore $\alpha = a+b\sqrt{2} \in\Z[\sqrt{2}]$.
+\end{proof}
+
+Note that this is not a general case. For example, the integral closure of $\Z$ in $\Q(\sqrt{5})$ is not $\Z[\sqrt{5}]$ because $\alpha = (1+\sqrt{5})/2$ is a root of $x^2-x-1$.
+
+\begin{definition}\noindent
+    \begin{itemize}
+        \item[(a)] An algebraic number is an element of $\overline{\Q}$, the algebraic closure of $\Q$.
+        \item[(b)] An algebraic integer is an algebraic number which is integral over $\Z$.
+        \item[(c)] A rational integer is an element of $\Z$ (to distinguish it from an algebraic integer).
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Let $A \subseteq B$ be rings. We say that $B$ is finite over $A$, or that $B$ is a finite ring extension of $A$ if $B$ is finitely generated as a module over $A$.
+\end{definition}
+
+\begin{example}
+    The polynomial ring $\Q[t]$ is finitely generated over $\Q$ but not finite over $\Q$.
+\end{example}
+\clearpage
