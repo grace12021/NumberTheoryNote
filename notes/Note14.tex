@@ -1,0 +1,108 @@
+Monday, September 25.
+
+\subsubsection*{Contents}
+\begin{itemize}
+    \item Reading for today: : \S 1.11
+    \item Localization
+\end{itemize}
+
+\subsection*{\S11 Localization}
+We can consider localization as a generalization of the construction of the fraction field of an entire ring to allow fewer denominators; or to handle non-entire rings.
+
+\begin{definition}
+    A multiplicative subset of a ring $A$ is a subset $S \subseteq A$ such that
+    \begin{itemize}
+        \item[(a)] $S$ contains the multiplicative identity $1$;
+        \item[(b)] $S$ is closed under multiplication i.e. $s_1 s_2 \in S \quad \forall s_1, s_2 \in S$.
+    \end{itemize}
+    In other words, $S$ is a submonoid of the multiplicative monoid of $A$.
+\end{definition}
+
+\noindent
+Throughout today, $A$ is a commutative ring and $S\subseteq A$ is a multiplicative subset.
+
+\begin{proposition}
+\label{note14_1}
+    Define a relation $\sim$ on $S \times A$ by $$(s_1, a_1) \sim (s_2, a_2) \Leftrightarrow \exists s' \in S \ s's_1a_2 = s's_1a_2.$$
+    \noindent
+    The intuition of $\sim$ is $$(s_1, a_1) \sim (s_2, a_2) \Leftrightarrow \frac{a_1}{s_1} = \frac{a_2}{s_2}.$$
+    \noindent Then
+    \begin{itemize}
+        \item[(a)] $\sim$ is an equivalence relation; and
+        \item[(b)] $\sim$ is the smallest equivalence relation satisfying $(s, a) \sim (s's, s'a)$ for all $s, s' \in S$ and all $a \in A$.
+    \end{itemize}
+\end{proposition}
+\begin{proof}
+    For (a), we will show that $\sim$ is reflexive, symmetric, and transitive. Since a multiplicative subset has $1$, the reflexivity is straightforward. Due to the symmetry of the equation $s's_1a_2 = s's_2a_1$, the symmetry is clear. Suppose that $(s_1,a_1) \sim (s_2, a_2)$ and $(s_2, a_2) \sim (s_3, a_3)$. Then we have $s's_1a_2 = s's_2a_1$ and $s''s_2a_3 = s''s_3a_2$ for some $s', s'' \in S$. Hence $(s's''a_2)s_1a_3 = s's''a_1s_2a_3 = (s's''a_2)a_1s_3$; hence we have $(s_1, a_1) \sim (s_3, a_3)$.
+
+    Let $\approx$ be the smallest equivalence relation satisfying the given condition in (b). We may consider relations $\approx, \sim$ as subsets of $(S \times A)\times (S \times A)$. It is clear that $\sim$ satisfies the given condition hence $\sim \ \subseteq\ \approx$. Take any $(s_1, a_1) \sim (s_2, a_2)$. Then
+    \begin{align*}
+        &(s_1, a_1) \sim (s_2, a_2)\\
+        \Rightarrow \ &\exists s'\in S \ (s_1,a_1) \approx (s' s_2s_1, s's_2a_1) \wedge (s' s_1s_2, s's_1a_2) \approx (s_2, a_2)\\
+        \Rightarrow \ & (s_1, a_1) \approx (s_2, a_2).
+    \end{align*}
+    So $\sim \ \subseteq\ \approx$ and we obtained the desired result.
+\end{proof}
+
+\begin{definition}
+    The localization $S^{-1}A$ (or $A[S^{-1}]$) is the set of $\sim$-equivalence classes of $S \times A$. The equivalence class of $(s, a)$ is denoted as $s^{-1}a$ or $a/s$.
+\end{definition}
+
+\begin{corollary}[From Proposition \ref{note14_1}]
+    Let $B, C$ be sets, and let $f: S \times A \times B \rightarrow C$ be a function. If $f(s,a,b) = f(s's, s'a, b)$ for all $s, s' \in S, a \in A$ and $b \in B$, then there is a unique well-defined function $\Tilde{f}: S^{-1}A\times B \rightarrow C$ such that $\Tilde{f}(a/s, b) = f(s,a, b)$ for all $s,a,b$.
+\end{corollary}
+
+\begin{proposition}
+    The usual formulas for addition and multiplication of fractions
+    \[\frac{a_1}{s_1} + \frac{a_2}{s_2} = \frac{a_1s_2+a_2s_1}{s_1s_2}, \quad \frac{a_1}{s_1} \cdot \frac{a_2}{s_2} = \frac{a_1a_2}{s_1s_2}\]
+    give $S^{-1}A$ a well-defined structure of a (commutative) ring, such that the map $\varphi: a \mapsto a/1$ is a ring homomorphism $A \rightarrow S^{-1}A$. Moreover, this homomorphism satisfies the following universal property: every ring homomorphism $\psi: A \rightarrow B$ in which $\psi(S) \subset B^*$ factors uniquely through the canonical map $A \rightarrow S^{-1}A$. In other words, the following diagram commutes via $\theta(a/s) = \psi(a)\psi(s)^{-1}$.
+    \[\begin{tikzcd}
+A \arrow{r}{\psi} \arrow[swap]{dr}{\varphi} & B \\
+&\arrow[dashed]{u}{\exists! \theta} S^{-1}A
+\end{tikzcd}\]
+\end{proposition}
+\begin{example}\noindent
+    \begin{enumerate}
+        \item Let $S = \{1\}$ or $S = A^*$. Then $S^{-1}A \cong A$ via $\varphi$.
+        \item $A$ is an entire ring and $S = A\setminus \{0\}$. Then $S^{-1}A$ is the fraction ring $K$ of $A$.
+        \item $S^{-1}A = 0$ iff $0 \in S$.
+        \begin{proof}
+            \begin{align*}
+                S^{-1}A = 0 \Leftrightarrow \frac{1}{1} = \frac{0}{1} \Leftrightarrow \exists s \in S \ s(1\cdot 1 - 1\cdot 0) = 0 \Leftrightarrow s = 0 \in S.
+            \end{align*}
+        \end{proof}
+        \item If $A$ is entire and $0 \notin S$, then $A \rightarrow S^{-1}A$ is injective, and $S^{-1}A$ is isomorphic to a subring of the fraction field $K$.
+        \item $A = \Z$ and $S = \{3^k \ : \ k \in \Z_{\geq 0}\}$. Then $S^{-1}A = \Z[1/3]$.
+        \item If $A$ is any ring, $\mathfrak{p}$ is a prime ideal, and $S = A \setminus \mathfrak{p}$, then $S$ is a multiplicative subset of $A$ and $S^{-1}A$ is called the local ring of $A$ at $\mathfrak{p}$ denoting $A_{\mathfrak{p}}$.
+        \begin{proof}
+            Since $\mathfrak{p}$ is prime, $1$ is not in $\mathfrak{p}$ hence it is in $S$. Also, we realize that
+            \begin{align*}
+                \forall x_1, x_2 \ (x_1 \notin \mathfrak{p} \wedge x_2 \notin \mathfrak{p} \Rightarrow \ x_1x_2 \notin \mathfrak{p}) \ \Leftrightarrow \ \forall x_1, x_2 \ (x_1x_2 \in \mathfrak{p} \Rightarrow x_1\in \mathfrak{p} \lor x_2 \in \mathfrak{p}).
+            \end{align*}
+            Since $x \notin \mathfrak{p}$ iff $x \in S$, we have $S = A \setminus \mathfrak{p}$ is a multiplicative subset of $A$.
+        \end{proof}
+        For example, we have $\Z_{(2)} \subset \Q$ has elements of the form $q/p$ where $p$ is odd. This is the opposite of $\Z[1/2]$ in some sense.
+    \end{enumerate}
+\end{example}
+
+\noindent
+When $A = \Z/10\Z$ and $S = \{1,2,4,6,8\}$, what is $S^{-1}A$? The following proposition is useful in addressing such questions.
+\begin{proposition}
+    The kernel of $\varphi$ is $\{a \in A \ : \ \mathrm{ann}(a) \cap S \neq \emptyset\}$ where $\varphi: A \rightarrow S^{-1}A$ is given as $\varphi(a) = a/1$.
+\end{proposition}
+\begin{proof}
+    \begin{align*}
+        a \in \ker \varphi \Leftrightarrow \frac{a}{1} = \frac{0}{1} \Leftrightarrow \exists s\in S \ s(a-1) = 0 \Leftrightarrow \mathrm{ann}(a) \cap S \neq \emptyset
+    \end{align*}
+\end{proof}
+\noindent
+In $\Z/10\Z$, we observe that
+\begin{align*}
+    &\mathrm{ann}(2) = \mathrm{ann}(4) = \mathrm{ann}(6) = \mathrm{ann}(8) = \{0, 5\},\\
+    &\mathrm{ann}(5) = \{0,2,4,6,8\},\\
+    &\mathrm{ann}(1) = \mathrm{ann}(3) = \mathrm{ann}(7) = \mathrm{ann}(9) = \{0\}.
+\end{align*}
+So the kernel of $\varphi$ is $\{0,5\}$ and $S^{-1}A \cong \Z/5\Z$.
+
+We can also localize $A$-modules. Let $M$ be an $A$-module. Then we may define an equivalence relation $\sim$ on $S \times M$ and let $S^{-1}M = (S \times M)/\sim$. This is a module over $S^{-1}A$. Also, if $f: M_1 \rightarrow M_2$ is a homomorphism of $A$-modules, then $f$ induces a $S^{-1}A$-module homomorphism $S^{-1}f: S^{-1}M_1 \rightarrow S^{-1}M_2$. We get a (covariant) functor $S^{-1}: \mathrm{Mod}_A \rightarrow \mathrm{Mod}_{S^{-1}A}$. In addition, it is exact i.e. if $0 \rightarrow M' \rightarrow M \rightarrow M'' \rightarrow 0$ is exact, then $0 \rightarrow S^{-1}M' \rightarrow S^{-1}M \rightarrow S^{-1}M'' \rightarrow 0$ is exact.
+\clearpage
